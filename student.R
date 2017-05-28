@@ -298,25 +298,24 @@ sample2 <- education[,11]  # VisitedResource
 
 
 #alpha = 0.05
-# 1) Independent group
+# 1) Dependent group
 # 2) Paired t-test
-# Independent sample t-test
+# Dependent sample t-test
 
 mean(sample1)  # 46.775
 mean(sample2)  # 54.79792
 
-# Normality Test
-shapiro.test(sample1)   # p-value = 4.005e-16 > alpha  normal distributed
-shapiro.test(sample2)   # p-value = 2.2e-16 > alpha  normal distributed
 
-# var-test
-var.test(sample1,sample2,conf.level = 0.95)   # p-value = 0.115 > alpha so variances are equal
+# Normality Test
+shapiro.test(sample1)   # p-value = 4.005e-16 < alpha  not normal distributed
+shapiro.test(sample2)   # p-value = 2.2e-16 < alpha  not normal distributed
+
 
 # t-test
-t.test(sample1,sample2,conf.level = 0.95, alternative = "less", var.equal = TRUE)    
+t.test(sample1,sample2,conf.level = 0.95, alternative = "less", paired = TRUE)    
 
 
-# p-value = p-value = 5.356e-05 > alpha  reject the null hypotesis
+# p-value = p-value = 4.806e-12 < alpha  reject the null hypotesis
 # VisitedResource is not less than RasieHands
 
 
